@@ -1,0 +1,362 @@
+dara science(Sprint1)
+
+create a series name heights_A with values 176.2, 158.4, 167.6, 156.2, 161.4. these values represent the height of 5 student of class A.
+Label each student as s1, s2, s3, s4, s5
+determine the shape of heights_A and display it.
+hints: use the series method available in the pandas library
+
+create another series name weights_A with values 85.1, 90.2, 76.8, 80.4, 78.9. these values represent teh height of 5 student of class A.
+Label each student as s1, s2, s3, s4, s5
+determine the data type of values weights_A and display it.
+hints: use the series method available in the pandas library
+
+create a dataframe named df_A which contains the height and weight of five students namely s1, s2, s3, s4, s5
+label the columns as student_height and student_weight, respectively
+display the shape of df_A
+hints: use the dataframe method in pandas and also the series heights_A, weights_A created in the previous problem
+
+create another series named heights_B from a 1-D numpy array of 5 elements derived from the normal distribution mean 170.0 and standard deviation 25.0
+set random seed to 100 before creating the heights_B series
+
+create another series named_weights_B from a 1-D numpy array of 5 elements derived from the normal distribution of mean 75.0 and standard deviation 12.0
+set random seed to 100 before creating the weights_B series
+label both series elements as s1, s2, s3, s4, s5
+print the mean of series heights_B
+
+create a dataframe df_B containing the height and weight of students s1, s2, s3, s4, s5 belonging to class B
+label the columns as Student_height and Student_weight respectively
+display the column names of df_B
+use the heights_B and weights_B series created in the above task
+
+#Write your code here
+import pandas as pd
+import numpy as np
+
+# task1 heights_A
+heights_A = pd.Series([176.2, 158.4, 167.6, 156.2, 161.4], index=['s1', 's2', 's3', 's4', 's5'])
+print(heights_A.shape)
+
+# task2 weights_A
+weights_A = pd.Series([85.1, 90.2, 76.8, 80.4, 78.9], index=['s1', 's2', 's3', 's4', 's5'])
+print(weights_A.dtype)
+
+# task3 df_A
+df_A = pd.DataFrame({'student_height': heights_A, 'student_weight': weights_A})
+print(df_A.shape)
+
+
+# task4 mean of heightb
+np.random.seed(100)
+heights_B = pd.Series(np.random.normal(170.0, 25.0, 5), index=['s1', 's2', 's3', 's4', 's5'])
+weights_B = pd.Series(np.random.normal(75.0, 12.0, 5), index=['s1', 's2', 's3', 's4', 's5'])
+print(heights_B.mean())
+
+# task5 df_B
+df_B = pd.DataFrame({'Student_height': heights_B, 'Student_weight': weights_B})
+print(df_B.columns)
+#print(', '.join(df_B.columns))
+
+=================
+create a series name heights_A with values 176.2, 158.4, 167.6, 156.2, 161.4. these values represent the height of 5 student of class A.
+Label each student as s1, s2, s3, s4, s5
+print the second element of series heights_A
+print the middle three elements of series heights_A
+
+create another series name weights_A with values 85.1, 90.2, 76.8, 80.4, 78.9. these values represent teh height of 5 student of class A.
+Label each student as s1, s2, s3, s4, s5
+create a dataframe named df_A which contains the height and weight of five students namely s1, s2, s3, s4, s5
+label the columns as student_height and student_weight, respectively
+select the column df_A referring to student heights, and store it in the variable height
+print the type of object of the variable height.
+select the rows corresponding to students s1, s2 of df_A and capture them in another dataframe df_s1s2 (hints: use .loc or iloc method)
+
+select the rows corresponding to student s1,s2 and s5 of df_A in the order s2,s5,s1, and capturej them in another dataframe df_s2s5s1
+print the df_s2s5s1
+
+select those row of df_A whose index values end with 1 or 4, and capture them in another dataframe df_s1s4 (hints: use .loc or .iloc method)
+print df_s1s4
+
+#Write your code here
+import pandas as pd
+
+# task1
+heights_A = pd.Series([176.2, 158.4, 167.6, 156.2, 161.4], index=['s1', 's2', 's3', 's4', 's5'])
+print(heights_A[1])
+
+# task2
+print(heights_A[1:4])
+weights_A = pd.Series([85.1, 90.2, 76.8, 80.4, 78.9], index=['s1', 's2', 's3', 's4', 's5'])
+
+# task3
+df_A = pd.DataFrame({'student_height': heights_A, 'student_weight': weights_A})
+height = df_A['student_height']
+print(type(height))
+
+# task4
+df_s1s2 = df_A.loc[['s1', 's2']]
+print(df_s1s2)
+# task5
+df_s2s5s1 = df_A.loc[['s2', 's5', 's1']]
+print(df_s2s5s1)
+
+# task6
+df_s1s4 = df_A[df_A.index.str.endswith('1') | df_A.index.str.endswith('4')]
+print(df_s1s4)
+
+============================
+
+create a series name heights_A with values 176.2, 158.4, 167.6, 156.2, 161.4. these values represent the height of 5 student of class A.
+Label each student as s1, s2, s3, s4, s5
+
+create another series name weights_A with values 85.1, 90.2, 76.8, 80.4, 78.9. these values represent teh height of 5 student of class A.
+Label each student as s1, s2, s3, s4, s5
+
+create a dataframe named df_A which contains the height and weight of five students namely s1, s2, s3, s4, s5
+label the columns as student_height and student_weight, respectively
+write the contents of df_A to a CSV file name classA.csv (hints: use to_csv method)
+verify if the file classA.csv exists in the present directory using command ls -l
+
+task2
+read the contents of the CSV file, classA.csv into dataframe df_A2 (hints: use read_csv method)
+display the dataframe df_A2
+
+read the contents of the CSV file, classA.csv into dataframe df_A3, such that the first column data values are treated as index to df_A3 (hints: use index_col of read_csv method)
+display the dataframe df_A3
+
+create another series named heights_B from a 1-D numpy array of 5 elements derived from the normal distribution mean 170.0 and standard deviation 25.0
+set random seed to 100 before creating the heights_B series
+
+create another series named weights_B from a 1-D numpy array of 5 elements derived from the normal distribution of mean 75.0 and standard deviation 12.0
+set random seed to 100 before creating the weights_B series
+
+label both series elements with s1,s2,s3,s4 and s5
+
+create a dataframe df_B containing the height and weight of students s1,s2,s3,s4,s5 belong to class B.
+label the columns as Student_height and Student_weight
+write the contents of df_B without the index to a csv file name classB.csv
+
+read the data from classB.csv into dataframe df_B2
+display the dataframe df_B2
+
+read the data from classB.csv into dataframe df_B3 such that the arugemnt header of read_csv is set to None. display the dataframe df_B3
+display the dataframe df_B3
+
+read the data from classB.csv into dataframe df_B4, such that the argument header of read_csv is set to None and arguement skiprows is set to 2.
+display the dataframe df_B4
+display the dataframe df_B2
+
+import pandas as pd
+import numpy as np
+import os
+
+# task1
+heights_A = pd.Series([176.2, 158.4, 167.6, 156.2, 161.4], index=['s1', 's2', 's3', 's4', 's5'])
+weights_A = pd.Series([85.1, 90.2, 76.8, 80.4, 78.9], index=['s1', 's2', 's3', 's4', 's5'])
+df_A = pd.DataFrame({'student_height': heights_A, 'student_weight': weights_A})
+df_A.to_csv('classA.csv')
+os.system('ls -l')
+# task2
+df_A2 = pd.read_csv('classA.csv')
+print(df_A2)
+# task3
+df_A3 = pd.read_csv('classA.csv', index_col=0)
+print(df_A3)
+
+# task4
+np.random.seed(100)
+heights_B = pd.Series(np.random.normal(170.0, 25.0, 5), index=['s1', 's2', 's3', 's4', 's5'])
+weights_B = pd.Series(np.random.normal(75.0, 12.0, 5), index=['s1', 's2', 's3', 's4', 's5'])
+df_B = pd.DataFrame({'Student_height': heights_B, 'Student_weight': weights_B})
+df_B.to_csv('classB.csv', index=False)
+
+# task5
+df_B2 = pd.read_csv('classB.csv')
+print(df_B2)
+
+# task6
+df_B3 = pd.read_csv('classB.csv', header=None)
+print(df_B3)
+
+# task7
+df_B4 = pd.read_csv('classB.csv', header=None, skiprows=2)
+print(df_B4)
+
+===============================
+create an index named dates representing a range of dates starting from 1-Sep-2017 to 15-Sep02017 (hint: use date_range in pandas)
+print the 3rd element of the created DataTimeIndex
+convert the following date strings into datetime objects: datelist = ['14Sep-2017', '9-Sep-2017'] (hints: use to_datetime in pandas)
+capture the result in the variable 'dates_to_be_searched' and print it
+check if the elements of 'dates_to_be_searched' are present in DateTimeIndex, 'dates', create above (hint: use isin methiod assoicated with DatatimeIndex object)
+print the output
+create a multi index named mi_index of two levels represented in th following array arraylist: arraylist=[['classA']*5+['classB']*5,[s1, s2, s3, s4, s5]*2]
+print levels of mi_index
+
+import pandas as pd
+from datetime import datetime
+
+# task1
+dates = pd.date_range(start='2017-09-01', end='2017-09-15')
+print(dates[2])
+
+# task2
+datelist = ['14-Sep-2017', '9-Sep-2017']
+dates_to_be_searched = pd.to_datetime(datelist, format='%d-%b-%Y')
+print(dates_to_be_searched)
+
+# task3
+print(dates_to_be_searched.isin(dates))
+
+# task4
+arraylist = [['classA']*5 + ['classB']*5, ['s1', 's2', 's3', 's4', 's5']*2]
+mi_index = pd.MultiIndex.from_arrays(arraylist)
+print(mi_index.levels)
+============================
+create a series named height_A with values 176.2, 158.4, 167.6, 156.2 and 161.4. these represent heights of 5 students of class A
+label each student as s1, s2, s3, s4 and s5
+create another series named weights_A with values 85.1, 90.2, 76.8, 80.4 and 78.9. these values represent weights of 5 student of class A
+label each student as s1, s2, s3, s4 and s5 
+
+create a dataframe named df_A, which contains the height and weight of five students namely s1, s2, s3, s4 and s5
+label columns as Student_height and Student_weight
+set height and weight values of student s3 to NaN(use /loc to select the s3 record and set the values to np.nan
+set the weight- of s5 to NaN
+drop the rows having null value in any if the columns, and assign the result to df_A2 (use dropna method)
+display the dataframe df_A2
+
+import pandas as pd
+import numpy as np
+
+heights_A = pd.Series([176.2, 158.4, 167.6, 156.2, 161.4], index=['s1', 's2', 's3', 's4', 's5'])
+weights_A = pd.Series([85.1, 90.2, 76.8, 80.4, 78.9], index=['s1', 's2', 's3', 's4', 's5'])
+df_A = pd.DataFrame({'Student_height': heights_A, 'Student_weight': weights_A})
+df_A.loc['s3', 'Student_height'] = np.nan
+df_A.loc['s3', 'Student_weight'] = np.nan
+df_A.loc['s5', 'Student_weight'] = np.nan
+#print(df_A)
+df_A2 = df_A.dropna()
+print(df_A2)
+==============================
+create a series named height_A with values 176.2, 158.4, 167.6, 156.2 and 161.4. these represent heights of 5 students of class A
+label each student as s1, s2, s3, s4 and s5
+create another series named weights_A with values 85.1, 90.2, 76.8, 80.4 and 78.9. these values represent weights of 5 student of class A
+label each student as s1, s2, s3, s4 and s5 
+
+create a dataframe named df_A, which contains the height and weight of five students namely s1, s2, s3, s4 and s5
+label columns as Student_height and Student_weight
+
+filter the rows from df_A, whose Student_height > 160.0 and Student_weight<80.0, and capture them in another dataframe df_A_filter1
+print the dataframe df_A_filter1
+
+filter the rows from df_A whose index value end with 5, and capture them in another dataframe df_A_filter2
+print the dataframe df_A_filter2
+
+create a new column Gender in the dataframe df_A using command: df_A['Gender']=['M','F','M','M','F']
+group df_A based on Gender, and capture the result in df_groups
+print the mean height and weight of each group (hints: use groupby method in df_A, then call the mean method on grouped data df_groups)
+
+import pandas as pd
+
+height_A = pd.Series([176.2, 158.4, 167.6, 156.2, 161.4], index=['s1', 's2', 's3', 's4', 's5'])
+weights_A = pd.Series([85.1, 90.2, 76.8, 80.4, 78.9], index=['s1', 's2', 's3', 's4', 's5'])
+df_A = pd.DataFrame({'Student_height': height_A, 'Student_weight': weights_A})
+#print(df_A)
+
+df_A_filter1 = df_A[(df_A['Student_height'] > 160.0) & (df_A['Student_weight'] < 80.0)]
+print(df_A_filter1)
+
+# task2
+df_A_filter2 = df_A[df_A.index.str.endswith('5')]
+print(df_A_filter2)
+
+# task3
+df_A['Gender'] = ['M', 'F', 'M', 'M', 'F']
+df_groups = df_A.groupby('Gender')
+print(df_groups.mean())
+====================
+create a series named height_A with values 176.2, 158.4, 167.6, 156.2 and 161.4. these represent heights of 5 students of class A
+label each student as s1, s2, s3, s4 and s5
+create another series named weights_A with values 85.1, 90.2, 76.8, 80.4 and 78.9. these values represent weights of 5 student of class A
+label each student as s1, s2, s3, s4 and s5 
+
+create a dataframe named df_A, which contains the height and weight of five students namely s1, s2, s3, s4 and s5
+label columns as Student_height and Student_weight
+
+create a new column Gender in the dataframe df_A using command: df_A['Gender']=['M','F','M','M','F']
+create another series s, from a list [165.4,82.7,'F'], set the value of the name arguement of series, s, to s6
+provide the following values to the argument index:['Student_height','Student_weight','Gender']
+append the series s to the dataframe df_A and store the captured array in df_AA
+display the dataframe df_AA
+
+create another series named heights_B from a 1-D numpy array of 5 elements derived from the normal distribution mean 170.0 and standard deviation 25.0
+set random seed to 100 before creating the heights_B series
+
+create another series named weights_B from a 1-D numpy array of 5 elements derived from the normal distribution of mean 75.0 and standard deviation 12.0
+set random seed to 100 before creating the weights_B series
+
+label both series elements with s1,s2,s3,s4 and s5
+
+create a dataframe df_B containing the height and weight of students s1,s2,s3,s4,s5 belong to class B.
+label the columns as Student_height and Student_weight
+change the index of df_B to ['s7','s8','s9','s10','s11']
+create the gender column in df_B with values ['F','M','F','F','M']
+concatenate two dataframes df_AA and df_B and assign the result of df. (hints: concat method)
+display the dataframe df
+
+import pandas as pd
+import numpy as np
+
+#task1
+height_A = pd.Series([176.2, 158.4, 167.6, 156.2, 161.4], index=['s1', 's2', 's3', 's4', 's5'])
+weights_A = pd.Series([85.1, 90.2, 76.8, 80.4, 78.9], index=['s1', 's2', 's3', 's4', 's5'])
+df_A = pd.DataFrame({'Student_height': height_A, 'Student_weight': weights_A})
+df_A['Gender'] = ['M', 'F', 'M', 'M', 'F']
+#print(df_A)
+s = pd.Series([165.4, 82.7, 'F'], index=['Student_height', 'Student_weight', 'Gender'], name='s6')
+#print(s)
+df_AA = df_A.append(s, ignore_index=False)
+print(df_AA)
+
+# task2
+np.random.seed(100)
+heights_B = pd.Series(np.random.normal(170.0, 25.0, 5), index=['s1', 's2', 's3', 's4', 's5'])
+weights_B = pd.Series(np.random.normal(75.0, 12.0, 5), index=['s1', 's2', 's3', 's4', 's5'])
+df_B = pd.DataFrame({'Student_height': heights_B, 'Student_weight': weights_B})
+#print(df_B)
+df_B.index = ['s7', 's8', 's9', 's10', 's11']
+df_B['Gender'] = ['F', 'M', 'F', 'F', 'M']
+#print(df_B)
+
+# Concatenate df_AA and df_B
+df = pd.concat([df_AA, df_B])
+print(df)
+=======================
+create the following 2 series nameid=pd.Series(range(101,111)), name=pd.Series(['person' + str(i) for i in range(1,11)])
+create the dataframe master with series nameid and name.  let the column names be nameid and name respectively
+create the dataframe transaction using the command: transaction=pd.Dataframe({'nameid':[108,108,108,103],'product':['iPhone','Nokia','Micromax','Vivo']})
+merge master with transactino on nameid, and save the merged dataframe as mdf. perform inner join (hints: use merge method)
+mdf should have the columns in this order: 'nameid','name','product'
+display mdf
+
+import pandas as pd
+
+# Create the master DataFrame
+master = pd.DataFrame({
+    'nameid': pd.Series(range(101, 111)),
+    'name': pd.Series(['person' + str(i) for i in range(1, 11)])
+})
+
+# Create the transaction DataFrame
+transaction = pd.DataFrame({
+    'nameid': [108, 108, 108, 103],
+    'product': ['iPhone', 'Nokia', 'Micromax', 'Vivo']
+})
+
+# Merge master with transaction on nameid
+mdf = pd.merge(master, transaction, on='nameid', how='inner')
+
+# Reorder columns in mdf
+mdf = mdf[['nameid', 'name', 'product']]
+
+# Display mdf
+print(mdf)
+
