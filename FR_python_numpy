@@ -1,0 +1,167 @@
+write a function arrar_3d which can accept four parameter n,x,y and z, then perform the following :
+simulate a random normal distribution, for n, whose mean is 5 and standard deviation 2.5. capture the result in x1
+fine the product of the number of element in the array element in byte.  then store it in te variable A
+set numpy random seed value 100
+define a random 3-d array x2 of shape (x,y,z) and of numbers between 0 and 1
+print the valye of A and x2
+
+def array_3d(n, x, y, z):
+    np.random.seed(100)
+    x1 = np.random.normal(loc=5, scale=2.5, size=n)
+    A = x1.size * x1.itemsize
+    x2 = np.random.random((x, y, z))
+    
+    print(A)
+    print(x2)
+====================
+write a function arr which can accept four parameters a,x,y and z, then perform the following operations
+define a ndarray x1, having first a even numbers(zero not included) (hints:make use of arrange)
+define a ndarry x2, haveing equally spaced z numbers between x and y
+(hints: make use if linspace)
+print(x1,x2)
+
+def arr(a, x, y, z):
+
+
+    x1 = np.arange(2, a, step=2)
+    
+    x2 = np.linspace(x, y, num=z)
+    
+    # Print x1 and x2
+    print(x1)
+    print(x2)
+
+============================
+write a function array_split which can accept three parameters i, r and c, then perform the following operations
+create a ndarray x having first i natural numbers, using arrange method
+change the shape of x to (r,c) and assign it to new array y
+split the array y horizontally into two arrays, then assign it to a new variables a and b
+print a and b
+
+def array_split(i,r,c):
+
+    x = np.arange(i)
+    
+    y = x.reshape(r, c)
+    
+    a, b = np.hsplit(y, 2)
+        
+    print(a)
+    print(b)
+
+==========================
+write the functions array_split that accepts three numbers n, n_row, n_col and perform array operations given below
+create a ndarray x having first n natural numbers, using arrange method
+change the shape of x to (x_row, n_col) and assign it to new array z
+split the array z vertically in to two arrays
+hint: use vsplit
+print the array
+
+def array_split(n,n_row,n_col):
+    x = np.arange(n)
+    z = x.reshape(n_row, n_col)
+    result = np.vsplit(z, 2)
+    for i, array in enumerate(result):
+        print(array)
+========================
+write the function join_array which accepts two lists(list1, list2).  function should print the array after joining them horizontally
+create a 2-d array p of shape(2,2) with elements of list list1
+create a 2-d array q of shape(2,3) with elements of list list2
+join the two array p and q horizontally
+print the new array
+
+def join_array(list1,list2):
+    
+    p = np.array(list1)
+
+    q = np.array(list2)
+
+    reshaped_array1 = p.reshape((2, -1))
+    reshaped_array2 = q.reshape((2, -1))
+
+    result = np.concatenate((reshaped_array1, reshaped_array2), axis=1)
+
+
+    print(result)
+
+=======================
+write the function array_oper which accept two number num1, num2 and perform array operations given below.
+create a 2d array y of shape(2,3) having numbers from num1 to num2
+square each element of y
+add 5 to each element of resulted array
+print the new array
+
+def array_oper(num1,num2):
+    
+    #print(num1, num2)
+    y = np.arange(num1, num2+1).reshape(2, 3)
+    y_squared = np.square(y)
+    result_array = y_squared + 5
+    print(result_array)
+
+===========================
+write the function array_oper which accepts two number num1, num2 and performs array operations given below
+create a array x of shape (5,6), having 30 random integers between num1, num2
+print the cumulative sum of x along axis 0
+print the cumulative sum of x along axis 1
+def array_oper(num1,num2):
+    
+    
+    np.random.seed(100)
+    x = np.random.randint(num1, num2, size=(5, 6))
+       
+    
+    print(x[:, -1].sum())
+    print(x[-1, :].sum())
+==============================
+write the function array_oper which accept three parameter n,m,sd and perform the array operation given below
+create a array x of shape(n,), having n random number from a normal distribution of mean m and standard deivation sd
+print the mean of x
+print the standard deviation of x
+print the variance of x
+set np.random.seed(100)
+
+def array_oper(n,m,sd):
+    
+    np.random.seed(100)
+    x = np.random.normal(loc=m, scale=sd, size=n)
+    
+    mean_x = np.mean(x)
+    std_dev_x = np.std(x)
+    variance_x = np.var(x)
+    
+    print(mean_x)
+    print(std_dev_x)
+    print(variance_x)
+
+================================
+write the function array_index which accept three numbers n, n_row, n_col and performs the array operation give below
+create a array x of shape(n_row, n_col), having first n natural numbers
+print the element of last row
+print the element of middle column
+print elements, overlapping first two rows and last three columns
+
+def array_index(n,n_row,n_col):
+    
+    x= np.arange(n).reshape(n_row, n_col)
+    #print(x)
+    print(x[-1])
+    y=int(n_col/2)
+    print(x[:,y])
+    print(x[:2,-3:])
+
+===================
+write the function array_slice which accept four numbers n, n_dim, n_row, n_col and performs array operation give below
+create a array x of shape (n_dim, n_row, n_col) having first n natural numbers
+create a boolean array b of shape(2,), having element True, False
+print x[b]
+print x[b,:,1:3]
+
+def array_slice(n,n_dim,n_row,n_col):
+    
+    x= np.arange(n).reshape(n_dim,n_row, n_col)
+    #print(x)
+    b=[True, False]
+    print(x[b])
+    print(x[b,:,1:3])
+===================
